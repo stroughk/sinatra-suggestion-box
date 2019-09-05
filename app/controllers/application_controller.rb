@@ -16,7 +16,7 @@ class ApplicationController < Sinatra::Base
   helpers do #helper methods
 
     def logged_in? #should return true if logged in, otherwise false
-      !!current_user  #takes a value and turns it into a boolean value
+      !!current_user  #takes a value and returns a boolean value - true or false whether there is a user or not
     end
 
     def current_user 

@@ -15,13 +15,18 @@ class UsersController < ApplicationController
      end
     end
 
-    get '/signup' do 
+    get '/signup' do #this routes job is to render the signup form
+        erb :signup   #erb (render) a view
+    end
 
+    post '/users' do 
+        binding.pry
     end
 
     get '/users/:id' do   #user show route
         "Show route"
     end
 
+    
 
 end
