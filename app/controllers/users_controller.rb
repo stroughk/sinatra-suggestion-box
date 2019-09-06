@@ -29,6 +29,7 @@ class UsersController < ApplicationController
     end
 
     get '/users/:id' do   #user show route
+        @user = User.find_by(id: params[:id])
         erb :'/users/show'
     end
 
