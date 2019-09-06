@@ -24,15 +24,19 @@ class UsersController < ApplicationController
         @user = User.create(params)  #valid input, assign it to an instance variable
         redirect "/users/#{@user.id}" #we will grab user's id and redirect them to the users show page
        else
-                                    #invalid input
+        redirect '/login'                          #invalid input
        end        
     end
 
     get '/users/:id' do   #user show route
         @user = User.find_by(id: params[:id])
+        session[:user_id] = @user.id #this actually is logging in the user
         erb :'/users/show'
     end
 
-    
+    get '/logout' do 
+        session.clear
+        redirect '/'
+    end
 
 end
