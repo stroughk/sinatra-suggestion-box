@@ -20,11 +20,16 @@ class UsersController < ApplicationController
     end
 
     post '/users' do 
-        binding.pry
+       if params[:name] !="" && params[:email] != "" && params[:password] !="" #as long as all these params are valid, the user can be created
+        @user = User.create(params)  #valid input, assign it to an instance variable
+        redirect "/users/#{@user.id}" #we will grab user's id and redirect them to the users show page
+       else
+                                    #invalid input
+       end        
     end
 
     get '/users/:id' do   #user show route
-        "Show route"
+        erb :'/users/show'
     end
 
     
