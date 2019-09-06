@@ -24,7 +24,7 @@ class UsersController < ApplicationController
         @user = User.create(params)  #valid input, assign it to an instance variable
         redirect "/users/#{@user.id}" #we will grab user's id and redirect them to the users show page
        else
-        redirect '/login'                          #invalid input
+        redirect '/signup'                          #invalid input
        end        
     end
 
