@@ -25,10 +25,14 @@ class SuggestionEntriesController < ApplicationController
    #show page for a suggestion entry
     get '/suggestion_entries/:id' do 
         @suggestion_entry = SuggestionEntry.find(params[:id])
-        erb :"suggestion_entries/show"
+        erb :'/suggestion_entries/show'
     end
 
 
-   #index route for all suggestion entries 
+   #this route should send us to suggestion_entries/edit.erb which will render the edit form
+    get '/suggestion_entries/:id/edit' do 
+        erb :'/suggestion_entries/edit'
+    end
+
 
 end
