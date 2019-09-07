@@ -8,6 +8,20 @@ class SuggestionEntriesController < ApplicationController
 
    # post suggestion_entries to crete a new suggestion entry
 
+    post '/suggestion_entries' do 
+        if !logged_in?   #create a new suggestion entry only if logged in
+            redirect '/'
+        end
+
+        if params[:content] != ""  #only save the entry if it has some content
+            @suggestion_entry = SuggestionEntry.create(content: params[:content], user_id: current_user.id) #create a new entry
+            redirect "/suggestion_entries/#{@suggestion_entry.id}"
+        else
+            redirect '/suggestion_entries/new'
+        end
+    end
+
+
    #show page for a suggestion entry
 
    #index route for all suggestion entries 
