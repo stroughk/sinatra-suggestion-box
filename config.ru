@@ -6,5 +6,6 @@ end
 
 use Rack::MethodOverride
 use UsersController 
+use SuggestionEntriesController
 
 run ApplicationController
