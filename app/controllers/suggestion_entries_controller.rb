@@ -23,6 +23,11 @@ class SuggestionEntriesController < ApplicationController
 
 
    #show page for a suggestion entry
+    get '/suggestion_entries/:id' do 
+        @suggestion_entry = SuggestionEntry.find(params[:id])
+        erb :"suggestion_entries/show"
+    end
+
 
    #index route for all suggestion entries 
 
