@@ -24,15 +24,49 @@ class SuggestionEntriesController < ApplicationController
 
    #show page for a suggestion entry
     get '/suggestion_entries/:id' do 
-        @suggestion_entry = SuggestionEntry.find(params[:id])
+        set_suggestion_entry
         erb :'/suggestion_entries/show'
     end
 
 
    #this route should send us to suggestion_entries/edit.erb which will render the edit form
     get '/suggestion_entries/:id/edit' do 
-        erb :'/suggestion_entries/edit'
+        set_suggestion_entry
+        if logged_in?                               #first we check if the user is logged in, if not redirect them to the main page
+            if @suggestion_entry.user == current_user  #then we check if it's the actual user owns this who is logged in, if not redirect them to their user page
+                erb :'/suggestion_entries/edit'
+            else
+                redirect "users/#{current_user.id}"
+            end
+        else
+            redirect '/'
+        end
     end
+
+    #this route 
+    patch '/suggestion_entries/:id' do
+       # this route find the suggestion entry
+        set_suggestion_entry
+        if logged_in?
+            if @suggestion_entry.user == current_user     
+      #modify the suggestion entry using Active Record method 
+        @suggestion_entry.update(content: params[:content])
+       #redirect to show page
+       redirect "/suggestion_entries/#{@suggestion_entry.id}"
+            else   
+                redirect "users/#{current_user.id}"
+            end
+        else
+            redirect '/'
+        end
+    end
+
+    private 
+
+    def set_suggestion_entry
+        @suggestion_entry = SuggestionEntry.find(params[:id])
+    end
+
 
 
 end
