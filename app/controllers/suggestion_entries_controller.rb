@@ -1,7 +1,12 @@
 class SuggestionEntriesController < ApplicationController
 
-   #get suggestion_entries/new to render a form to create new entry
+    get '/suggestion_entries' do 
+        @suggestion_entries = SuggestionEntry.all 
+        erb :'suggestion_entries/index'
+    end 
 
+
+    #get suggestion_entries/new to render a form to create new entry
     get '/suggestion_entries/new' do 
         erb :'/suggestion_entries/new'
     end
