@@ -53,7 +53,7 @@ class SuggestionEntriesController < ApplicationController
        # this route find the suggestion entry
         set_suggestion_entry
         if logged_in?
-            if @suggestion_entry.user == current_user     
+            if authorized?(@suggestion_entry)   
       #modify the suggestion entry using Active Record method 
         @suggestion_entry.update(content: params[:content])
        #redirect to show page
