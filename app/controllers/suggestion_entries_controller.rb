@@ -70,6 +70,7 @@ class SuggestionEntriesController < ApplicationController
         set_suggestion_entry
         if logged_in? && authorized?(@suggestion_entry)
             @suggestion_entry.destroy
+            flash[:message] = "Your suggestion has been successfully deleted."
             redirect '/suggestion_entries'
         else
             redirect '/suggestion_entries'
