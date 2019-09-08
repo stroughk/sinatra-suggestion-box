@@ -1,11 +1,10 @@
-<h1>ALL SUGGESTIONS</h1>
+<h1>SEE ALL THE GREAT SUGGESTIONS</h1>
 <br><br>
 <% @suggestion_entries.each do |suggestion_entry| %>
-<h4><a href="/suggestion_entries/<%= suggestion_entry.id %>"><%=
-suggestion_entry.created_at %></a></h4>
-
+<br>
+<h4>Suggestion created by <%= suggestion_entry.user.name %> on <a href="/suggestion_entries/<%= suggestion_entry.id %>"><%=
+suggestion_entry.created_at.to_date %></a></h4>
+<br>
 <p><%= suggestion_entry.content %></p>
-<p>By <%= suggestion_entry.user.name %></p>
-
-<br><br>
+<hr>
 <% end %>
