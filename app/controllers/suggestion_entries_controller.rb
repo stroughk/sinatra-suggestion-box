@@ -66,6 +66,17 @@ class SuggestionEntriesController < ApplicationController
         end
     end
 
+    delete '/suggestion_entries/:id' do 
+        set_suggestion_entry
+        if logged_in? && authorized?(@suggestion_entry)
+            @suggestion_entry.destroy
+            redirect '/suggestion_entries'
+        else
+            redirect '/suggestion_entries'
+        end
+    end
+
+
     private 
 
     def set_suggestion_entry

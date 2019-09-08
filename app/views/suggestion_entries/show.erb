@@ -5,7 +5,9 @@ SHOW PAGE FOR SUGGESTION ENTRY
 <% ## to verify who owns this entry to edit or delete links  ! %>
 <% if authorized?(@suggestion_entry) %>   
     <a href="/suggestion_entries/<%= @suggestion_entry.id %>/edit">Edit Suggestion Entry</a>
-
-Delete Link 
-
+    <br><br>
+    <form class="" action="/suggestion_entries/<%= @suggestion_entry.id %>" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" name="" value="Delete this Entry">
+    </form>
 <% end %>

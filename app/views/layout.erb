@@ -15,9 +15,12 @@
   </head>
   <body>
     <div class="nav">
+      <% if logged_in? %>
+
       <a href ="/logout">Logout</a>
       <a href ="/suggestion_entries">All Suggestion Entries</a>
       <a href ="/suggestion_entries/new">New Suggestion Entry</a>
+      <% end %>
     </div>
 
     <div class="wrapper">
