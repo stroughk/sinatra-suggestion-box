@@ -2,7 +2,10 @@ SHOW PAGE FOR SUGGESTION ENTRY
 
 <p><%= @suggestion_entry.content%></p>
 
-Edit Link 
+<% ## to verify who owns this entry to edit or delete links  ! %>
+<% if current_user == @suggestion_entry.user  %>   
     <a href="/suggestion_entries/<%= @suggestion_entry.id %>/edit">Edit Suggestion Entry</a>
 
 Delete Link 
+
+<% end %>

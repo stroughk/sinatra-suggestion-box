@@ -27,6 +27,15 @@ class ApplicationController < Sinatra::Base
       @current_user ||= User.find_by(id: session[:user_id])  #this will return the user if there is one | memorization to eliminate multiple database calls
     end
 
+    def authorize
+      if @suggestion_entry
+        @suggestion_entry.user == current_user
+      else
+        nil
+      end
+    end
+
+
   end
 
 
