@@ -19,9 +19,11 @@ class SuggestionEntriesController < ApplicationController
         end
 
         if params[:content] != ""  #only save the entry if it has some content
+            flash[:message] = "Great job for submitting a suggestion! Your entry will be evaluated by management. You will receive a response about your suggestion within 24-48 hrs."
             @suggestion_entry = SuggestionEntry.create(content: params[:content], user_id: current_user.id) #create a new entry
             redirect "/suggestion_entries/#{@suggestion_entry.id}"
         else
+            flash[:message] = "You may not submit an empty suggestion entry. Please enter a suggestion."
             redirect '/suggestion_entries/new'
         end
     end
