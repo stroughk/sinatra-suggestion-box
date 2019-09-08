@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
     post '/login' do    #the purpose of this route is to receive the login form, find the user, log the user in
      @user = User.find_by(email: params[:email])  #to find the user
-     if @user.authenticate(params[:password]) #to authenticate the user - if user is valid, create a session
+     if @user && @user.authenticate(params[:password]) #to authenticate the user - if user is valid, create a session
         session[:user_id] = @user.id   #this is what logging a user in 
         puts session 
         redirect "users/#{@user.id}"                                      
