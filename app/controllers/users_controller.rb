@@ -9,9 +9,10 @@ class UsersController < ApplicationController
      if @user && @user.authenticate(params[:password]) #to authenticate the user - if user is valid, create a session
         session[:user_id] = @user.id   #this is what logging a user in 
         puts session 
+        flash[:message] = "Hi, #{@user.name}!"
         redirect "users/#{@user.id}"                                      
      else
-        flash[:message] = "You entered incorrect information. Please try again!"
+        flash[:errors] = "You entered incorrect information. Please try again!"
         redirect '/login'
      end
     end
@@ -21,19 +22,20 @@ class UsersController < ApplicationController
     end
 
     post '/users' do 
-       if params[:name] !="" && params[:email] != "" && params[:password] !="" #as long as all these params are valid, the user can be created
-        @user = User.create(params)  #valid input, assign it to an instance variable
-        redirect "/users/#{@user.id}" #we will grab user's id and redirect them to the users show page
-       else
-        redirect '/signup'                          #invalid input
-       end        
-    end
-
-    get '/users/:id' do   #user show route
-        @user = User.find_by(id: params[:id])
-        session[:user_id] = @user.id #this actually is logging in the user
-        erb :'/users/show'
-    end
+        if params[:name] !="" && params[:email] != "" && params[:password] !="" #as long as all these params are valid, the user can be created
+         @user = User.create(params)  #valid input, assign it to an instance variable
+         redirect "/users/#{@user.id}" #we will grab user's id and redirect them to the users show page
+        else
+        flash[:errors] ="Please fill out all fields."
+         redirect '/signup'                          #invalid input
+        end        
+     end
+ 
+     get '/users/:id' do   #user show route
+         @user = User.find_by(id: params[:id])
+         session[:user_id] = @user.id #this actually is logging in the user
+         erb :'/users/show'
+     end
 
     get '/logout' do 
         session.clear

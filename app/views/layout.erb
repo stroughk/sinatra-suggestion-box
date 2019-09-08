@@ -22,12 +22,17 @@
       <a href ="/suggestion_entries/new">New Suggestion Entry</a>
       <% end %>
     </div>
+   
+    <div class="wrapper"> 
 
-      <% if flash[:message] %>
+     <% if flash[:message] %>
           <h4><%= flash[:message] %></h4>
       <% end %>
 
-    <div class="wrapper"> 
+      <% if flash[:errors] %>
+        <h4 style="color: red;"><%= flash[:errors]%></h4>
+      <% end %>
+      
         <%= yield %>
 
       <footer class="branding">
