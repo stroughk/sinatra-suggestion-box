@@ -17,10 +17,14 @@ class SuggestionEntriesController < ApplicationController
         if !logged_in?   #create a new suggestion entry only if logged in
             redirect '/'
         end
-
+        
         if params[:content] != ""  #only save the entry if it has some content
             flash[:message] = "Great job for submitting a suggestion! Your entry will be evaluated by management. You will receive a response about your suggestion within 24-48 hrs."
-            @suggestion_entry = SuggestionEntry.create(content: params[:content], user_id: current_user.id) #create a new entry
+            @suggestion_entry = SuggestionEntry.new(content: params[:content], user_id: current_user.id) #create a new entry
+            if params[:anonymous]
+            @suggestion_entry.anonymous = false
+            end
+            @suggestion_entry.save 
             redirect "/suggestion_entries/#{@suggestion_entry.id}"
         else
             flash[:message] = "You may not submit an empty suggestion entry. Please enter a suggestion."

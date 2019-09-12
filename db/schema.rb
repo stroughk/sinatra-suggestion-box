@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190904014524) do
+ActiveRecord::Schema.define(version: 20190912221418) do
 
   create_table "suggestion_entries", force: :cascade do |t|
     t.string   "content"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "anonymous",  default: true
   end
 
   create_table "users", force: :cascade do |t|
