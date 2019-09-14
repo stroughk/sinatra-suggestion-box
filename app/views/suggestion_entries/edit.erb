@@ -1,8 +1,9 @@
-EDIT PAGE FOR A SUGGESTION ENTRY
-
+<h3><font color="330EFF">YOU MAY EDIT YOUR SUGGESTION</font></h3>
+<br>
 <form class="" action="/suggestion_entries/<%= @suggestion_entry.id %>" method="post">
   <input type="hidden" name="_method" value="patch">
   <label for="content">Content:</label>
   <textarea name="content" style="width:auto; height:auto;"><%= @suggestion_entry.content %></textarea>
   <input type="submit" name="" value="Edit Entry">
 </form>
+

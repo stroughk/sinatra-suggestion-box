@@ -1,7 +1,8 @@
-SHOW PAGE FOR SUGGESTION ENTRY
-
+<h1><font color="339EFF">YOUR SUGGESTION ENTRY: </font></h1>
+<br>
+<br>
 <p><%= @suggestion_entry.content%></p>
-
+<br>
 <% ## to verify who owns this entry to edit or delete links  ! %>
 <% if authorized?(@suggestion_entry) %>   
     <a href="/suggestion_entries/<%= @suggestion_entry.id %>/edit">Edit Suggestion Entry</a>
