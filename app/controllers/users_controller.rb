@@ -24,6 +24,7 @@ class UsersController < ApplicationController
     post '/users' do 
         if params[:name] !="" && params[:email] != "" && params[:password] !="" #as long as all these params are valid, the user can be created
          @user = User.create(params)  #valid input, assign it to an instance variable
+         session[:user_id] = @user.id
          redirect "/users/#{@user.id}" #we will grab user's id and redirect them to the users show page
         else
         flash[:errors] ="Please fill out all fields."
@@ -32,9 +33,14 @@ class UsersController < ApplicationController
      end
  
      get '/users/:id' do   #user show route
+        
+        if current_user.id == params[:id].to_i
          @user = User.find_by(id: params[:id])
-         session[:user_id] = @user.id #this actually is logging in the user
+          #this actually is logging in the user
          erb :'/users/show'
+        else
+            redirect "/users/#{current_user.id}"
+        end
      end
 
     get '/logout' do 

@@ -6,7 +6,7 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions #have access to a hash called sessions
-    set :session_secret, "ninja_secret_app"  #session id will be created for the particular session.
+    set :session_secret, ENV['SESSION_SECRET']  #session id will be created for the particular session. #use dot-env
     register Sinatra::Flash 
   end
 
